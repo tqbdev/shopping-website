@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Header from './components/Header/index';
 import Banner from './components/Banner';
 import CategoriesBar from './components/CategoriesBar';

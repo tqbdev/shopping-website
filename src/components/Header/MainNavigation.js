@@ -15,10 +15,10 @@ export default class MainNavigation extends Component {
               <nav className="navbar">
                 <ul className="navbar_menu">
                   <li><a href="#">home</a></li>
-                  <li><a href="categories.html">shop</a></li>
+                  <li><a href="#">shop</a></li>
                   <li><a href="#">promotion</a></li>
                   <li><a href="https://nordiccoder.com/blog" target="blank">blog</a></li>
-                  <li><a href="contact.html">contact</a></li>
+                  <li><a href="#">contact</a></li>
                 </ul>
                 <ul className="navbar_user">
                   <li className="checkout">
