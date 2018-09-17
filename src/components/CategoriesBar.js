@@ -5,26 +5,26 @@ import './CategoriesBar.css';
 export default class CategoriesBar extends Component {
   render () {
     return (
-      <div class="banner">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="banner_item align-items-center" id="women">
-                <div class="banner_category">
+      <div className="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <div className="banner_item align-items-center" id="women">
+                <div className="banner_category">
                   <a href="#">women's</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="banner_item align-items-center" id="accessories">
-                <div class="banner_category">
+            <div className="col-md-4">
+              <div className="banner_item align-items-center" id="accessories">
+                <div className="banner_category">
                   <a href="#">accessories's</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="banner_item align-items-center" id="men">
-                <div class="banner_category">
+            <div className="col-md-4">
+              <div className="banner_item align-items-center" id="men">
+                <div className="banner_category">
                   <a href="#">men's</a>
                 </div>
               </div>

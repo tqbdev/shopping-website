@@ -1,37 +1,39 @@
 import React, {Component} from 'react';
 
+import './TopNavigation.css';
+
 export default class TopNavigation extends Component {
   render () {
     return (
-      <div class="top_nav">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="top_nav_left">free shipping on all u.s orders over $50</div>
+      <div className="top_nav">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="top_nav_left">free shipping on all u.s orders over $50</div>
             </div>
-            <div class="col-md-6 text-right">
-              <div class="top_nav_right">
-                <ul class="top_nav_menu">
-                  <li class="language">
+            <div className="col-md-6 text-right">
+              <div className="top_nav_right">
+                <ul className="top_nav_menu">
+                  <li className="language">
                     <a href="#">
                       English
-                      <i class="fa fa-angle-down"></i>
+                      <i className="fa fa-angle-down"></i>
                     </a>
-                    <ul class="language_selection">
+                    <ul className="language_selection">
                       <li><a href="#">French</a></li>
                       <li><a href="#">Italian</a></li>
                       <li><a href="#">German</a></li>
                       <li><a href="#">Spanish</a></li>
                     </ul>
                   </li>
-                  <li class="account">
+                  <li className="account">
                     <a href="#">
                       My Account
-                      <i class="fa fa-angle-down"></i>
+                      <i className="fa fa-angle-down"></i>
                     </a>
-                    <ul class="account_selection">
-                      <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                      <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                    <ul className="account_selection">
+                      <li><a href="#"><i className="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                      <li><a href="#"><i className="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                     </ul>
                   </li>
                 </ul>
