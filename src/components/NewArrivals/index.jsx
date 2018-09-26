@@ -50,9 +50,8 @@ export default class NewArrivals extends Component {
   }
 
   render() {
-    var arr = [];
-    this.state.filters.map(product => {
-      arr.push(
+    const arrProduct = this.state.filters.map(product => {
+      return (
         <ProductCard
           key={product.id}
           product={product}
@@ -90,26 +89,14 @@ export default class NewArrivals extends Component {
             <div className="col text-center">
               <div className="new_arrivals_sorting">
                 <ul className="arrivals_grid_sorting clearfix button-group filters-button-group">
-                  {/* <li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked">
-                    all
-                  </li>
-                  <li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center">
-                    women's
-                  </li>
-                  <li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center">
-                    accessories
-                  </li>
-                  <li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center">
-                    men's
-                  </li> */}
                   {arrBtnFilter}
                 </ul>
               </div>
             </div>
           </div>
           <div className="row">
-            <div className="col">
-              <div className="product-grid">{arr}</div>
+            <div className="col-sm">
+              <div className="product-grid">{arrProduct}</div>
             </div>
           </div>
         </div>
