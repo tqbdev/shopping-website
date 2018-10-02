@@ -52,7 +52,7 @@ jQuery(document).ready(function($)
 	initTimer();
 	initFavorite();
 	initFixProductBorder();
-	initIsotopeFiltering();
+	// initIsotopeFiltering();
 	initSlider();
 
 	/* 
