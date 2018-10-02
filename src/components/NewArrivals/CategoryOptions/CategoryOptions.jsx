@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
+
+import './CategoryOptions.css';
+
+export default class CategoryOptions extends Component {
+  constructor (props) {
+    super(props);
+
+    const { categories, defaultCategoryId } = this.props;
+
+    this.state = {
+      selectedCategoryId: categories.length > 0
+        ? ((defaultCategoryId && categories.findIndex(v => v.id === defaultCategoryId) >= 0 && defaultCategoryId) || categories[0].id)
+        : ''
+    }
+
+    this.onItemClick = this.onItemClick.bind(this);
+  }
+
+  onItemClick (category) {
+    this.setState({
+      selectedCategoryId: category.id
+    })
+
+    const { onSelectedCategoryChanged } = this.props;
+    if (onSelectedCategoryChanged) {
+      onSelectedCategoryChanged(category);
+    }
+  }
+
+  render () {
+    const itemStaticClasses = 'grid_sorting_button button d-flex flex-column justify-content-center align-items-center';
+
+    return (
+      <div className="row align-items-center">
+        <div className="col text-center">
+          <div className="new_arrivals_sorting">
+            <ul className="arrivals_grid_sorting clearfix button-group filters-button-group">
+              {this.props.categories.map(category => (
+                <li
+                  key={category.id}
+                  className={cx(itemStaticClasses, {
+                    'active is-checked': category.id === this.state.selectedCategoryId
+                  })}
+                  onClick={() => this.onItemClick(category)}
+                >
+                  {category.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+CategoryOptions.propTypes = {
+  categories: PropTypes.array.isRequired,
+
+  defaultCategoryId: PropTypes.string,
+  onSelectedCategoryChanged: PropTypes.func,
+};
+
+CategoryOptions.defaultProps = {
+  defaultCategoryId: '',
+  onSelectedCategoryChanged: null,
+};
