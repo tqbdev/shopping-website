@@ -16,7 +16,8 @@ export default class ProductCard extends Component {
   }
 
   onFavoriteClick () {
-    this.setState(prevState => ({isFavorite: !prevState}));
+    const prevState = this.state.isFavorite;
+    this.setState({isFavorite: !prevState});
   }
 
   render () {
