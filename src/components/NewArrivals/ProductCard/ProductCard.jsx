@@ -31,7 +31,7 @@ export default class ProductCard extends Component {
             <img src={`assets/${product.image}`} alt={product.image} />
           </div>
 
-          <div className={cx('favorite favorite_left', {
+          <div onClick={this.onFavoriteClick} className={cx('favorite favorite_left', {
             'active': this.state.isFavorite
           })} />
 
@@ -47,7 +47,7 @@ export default class ProductCard extends Component {
             </h6>
             <div className="product_price">
               ${product.salePrice}
-              ${originalPrice}
+              {originalPrice}
             </div>
           </div>
         </div>
