@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import ProductList from './ProductList/ProductList';
+import { ProductList } from '../../shared';
 import CategoryOptions from './CategoryOptions/CategoryOptions';
 
 // import products from '../../services/data/products';
 // import categories from '../../services/data/categories';
 
-import GetData from '../../services/GetData';
+import GetData from '../../../services/GetData';
 
 import './NewArrivals.css';
 
