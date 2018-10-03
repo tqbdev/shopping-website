@@ -4,7 +4,7 @@ import MainNavigation from './MainNavigation';
 
 import './Header.css';
 
-export default class Header extends Component {
+export class Header extends Component {
   render () {
     return (
       <header className="header trans_300">

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import './ShippingInformation.css';
 
-export default class ShippingInformation extends Component {
+export class ShippingInformation extends Component {
   render () {
     return (
       <div className="benefit">
