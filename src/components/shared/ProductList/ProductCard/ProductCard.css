@@ -140,7 +140,7 @@
   right: 15px;
 }
 
-.add_to_cart_button {
+/* .add_to_cart_button {
   width: 100%;
   visibility: hidden;
   opacity: 0;
@@ -149,7 +149,7 @@
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-}
+} */
 
 .add_to_cart_button a {
   font-size: 12px;
