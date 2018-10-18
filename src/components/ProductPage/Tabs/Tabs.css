@@ -1,0 +1,14 @@
+.tab_container {
+  width: 100%;
+  display: none;
+}
+
+.tab_container.active {
+  display: block;
+}
+
+.tabs_section_container {
+  width: 100%;
+  padding-bottom: 80px;
+  border-bottom: solid 1px #ebebeb;
+}

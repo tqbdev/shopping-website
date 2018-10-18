@@ -11,7 +11,7 @@ export default class PerPageDropDown extends Component {
       <li>
         <span>Show</span>
         <span>6</span>
-        <i class="fa fa-angle-down"></i>
+        <i className="fa fa-angle-down"></i>
         <ul>
           <li><span>6</span></li>
           <li><span>12</span></li>
