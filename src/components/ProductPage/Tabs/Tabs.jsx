@@ -10,16 +10,32 @@ import './Tabs.css';
 export default class Tabs extends Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      selectedTabName: 'description'
+    }
+
+    this.onTabChanged = this.onTabChanged.bind(this);
+  }
+
+  onTabChanged (tabName) {
+    if (!tabName) return;
+
+    this.setState({
+      selectedTabName: tabName
+    });
   }
 
   render () {
     return(
       <div className="tabs_section_container">
 		    <div className="container">
-          <TabSelector></TabSelector>
+          <TabSelector onTabChanged={this.onTabChanged}></TabSelector>
           <div className="row">
             <div className="col">
-              <Descriptions></Descriptions>
+            {this.state.selectedTabName === 'description' && <Descriptions></Descriptions>}
+            {this.state.selectedTabName === 'additionalInformation' && <AdditionalInformation></AdditionalInformation>}
+            {this.state.selectedTabName === 'review' && <Reviews></Reviews>}
             </div>
           </div>
         </div>

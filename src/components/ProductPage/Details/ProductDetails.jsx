@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 
 import './ProductDetails.css';
 
 export default class ProductDetails extends Component {
   constructor (props) {
-    super(props);
-  }
+		super(props);
+		
+		this.state = {
+			isFavorite: false,
+			quantity: 1
+		}
+
+		this.changeFavorite = this.changeFavorite.bind(this);
+		this.changeQuanlity = this.changeQuanlity.bind(this);
+	}
+	
+	changeQuanlity(number) {
+		let quantity = this.state.quantity + number;
+
+		if (quantity < 1) {
+			quantity = 1;
+		}
+
+		this.setState({
+			isFavorite: this.state.isFavorite,
+			quantity
+		});
+	}
+
+	changeFavorite() {
+		this.setState({
+			isFavorite: !this.state.isFavorite,
+			quantity: this.state.quantity
+		});
+	}
 
   render () {
+		const staticClass = "product_favorite d-flex flex-column align-items-center justify-content-center";
+
     return(
       <div className="col-lg-5">
 				<div className="product_details">
@@ -38,12 +69,15 @@ export default class ProductDetails extends Component {
 					<div className="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
 						<div className="quantity_selector">
-							<span className="minus"><i className="fa fa-minus" aria-hidden="true"></i></span>
-							<span id="quantity_value">1</span>
-							<span className="plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
+							<span className="minus" onClick={() => this.changeQuanlity(-1)}><i className="fa fa-minus" aria-hidden="true"></i></span>
+							<span id="quantity_value">{this.state.quantity}</span>
+							<span className="plus" onClick={() => this.changeQuanlity(1)}><i className="fa fa-plus" aria-hidden="true"></i></span>
 						</div>
 						<div className="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-						<div className="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+						<div className={cx(staticClass, {
+							'active': this.state.isFavorite
+						})}
+						onClick={this.changeFavorite}></div>
 					</div>
 				</div>
 			</div>
