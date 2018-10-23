@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import SideBar from './Sidebar/Sidebar';
-import { Header, Footer, ShippingInformation, ProductList, Breadcrumb } from '../shared';
+import { ShippingInformation, ProductList, Breadcrumb } from '../shared';
 import SortingDropDown from './SortingDropDown/SortingDropDown';
 import PerPageDropDown from './PerPageDropDown/PerPageDropDown';
 import PageNavigationBar from './PageNavigationBar/PageNavigationBar';
@@ -52,19 +52,18 @@ export default class CategoryPage extends Component {
   render () {
     return (
       <div>
-        <Header />
-        <div class="container product_section_container">
-		      <div class="row">
-			      <div class="col product_section clearfix">
+        <div className="container product_section_container">
+		      <div className="row">
+			      <div className="col product_section clearfix">
               <Breadcrumb />
               <SideBar />
 
-              <div class="main_content">
-                <div class="products_iso">
-                  <div class="row">
-                    <div class="col">
-                      <div class="product_sorting_container product_sorting_container_top">
-                        <ul class="product_sorting">
+              <div className="main_content">
+                <div className="products_iso">
+                  <div className="row">
+                    <div className="col">
+                      <div className="product_sorting_container product_sorting_container_top">
+                        <ul className="product_sorting">
                           <SortingDropDown />
                           <PerPageDropDown />
                         </ul>
@@ -75,8 +74,8 @@ export default class CategoryPage extends Component {
                         products={this.state.filteredProducts} 
                       />}
 
-                      <div class="product_sorting_container product_sorting_container_bottom clearfix">
-									      <ul class="product_sorting">
+                      <div className="product_sorting_container product_sorting_container_bottom clearfix">
+									      <ul className="product_sorting">
                           <PerPageDropDown />
                         </ul>
                         <PageNavigationBar />
@@ -89,7 +88,6 @@ export default class CategoryPage extends Component {
           </div>
         </div>
         <ShippingInformation />
-        <Footer />
       </div>
     );
   }

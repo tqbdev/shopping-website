@@ -1,17 +1,40 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// import HomePage from './components/HomePage/HomePage';
-// import CategoryPage from './components/CategoryPage/CategoryPage';
-import ProductPage from './components/ProductPage/ProductPage';
+import { Header, Footer } from './components/shared';
+
+import routes from './routes';
 
 import './App.css';
+
+const RouteWithSubRoutes = route => {
+  if (route.path === '/') {
+    return <Route
+      exact
+      path={route.path}
+      render={props => (
+        <route.component {...props} />
+      )}
+    />
+  }
+  return <Route
+    path={route.path}
+    render={props => (
+      <route.component {...props} />
+    )}
+  />
+};
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <ProductPage />
-      </div>
+      <Router>
+        <div>
+          <Header></Header>
+          {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+          <Footer></Footer>
+        </div>
+      </Router>
     );
   }
 }
