@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 import './MainNavigation.css';
 
@@ -10,15 +11,15 @@ export default class MainNavigation extends Component {
           <div className="row">
             <div className="col-lg-12 text-right">
               <div className="logo_container">
-                <a href="#">Nordic<span>Shop</span></a>
+                <Link to="/">Nordic<span>Shop</span></Link>
               </div>
               <nav className="navbar">
                 <ul className="navbar_menu">
-                  <li><a href="#">home</a></li>
-                  <li><a href="#">shop</a></li>
-                  <li><a href="#">promotion</a></li>
+                  <li><Link to="/">home</Link></li>
+                  <li><Link to="/categories">products</Link></li>
+                  {/* <li><a href="#">promotion</a></li>
                   <li><a href="https://nordiccoder.com/blog" target="blank">blog</a></li>
-                  <li><a href="#">contact</a></li>
+                  <li><a href="#">contact</a></li> */}
                 </ul>
                 <ul className="navbar_user">
                   <li className="checkout">

@@ -29,7 +29,7 @@ export default class ProductCard extends Component {
       <div className="product-item">
         <div className="product">
           <div className="product_image">
-            <img src={`assets/${product.image}`} alt={product.image} />
+            <img src={product.image} alt={product.image} />
           </div>
 
           <div onClick={this.onFavoriteClick} className={cx('favorite favorite_left', {

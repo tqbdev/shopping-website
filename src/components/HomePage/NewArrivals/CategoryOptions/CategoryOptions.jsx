@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 import './CategoryOptions.css';
 
-export default class CategoryOptions extends Component {
+import { filterProducts } from '../../../../store/actions/Product/ProductApi';
+import { fetchCategories } from '../../../../store/actions/Category/CategoryApi';
+
+class CategoryOptions extends Component {
   constructor (props) {
     super(props);
 
-    const { categories, defaultCategoryId } = this.props;
+    const { categories } = this.props;
 
     this.state = {
       selectedCategoryId: categories.length > 0
-        ? ((defaultCategoryId && categories.findIndex(v => v.id === defaultCategoryId) >= 0 && defaultCategoryId) || categories[0].id)
-        : ''
+        ? categories[0].id : ''
     }
 
     this.onItemClick = this.onItemClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.dispatch(fetchCategories());
+  }
+
   onItemClick (category) {
     this.setState({
       selectedCategoryId: category.id
-    })
+    });
 
-    const { onSelectedCategoryChanged } = this.props;
-    if (onSelectedCategoryChanged) {
-      onSelectedCategoryChanged(category);
-    }
+    this.props.dispatch(filterProducts(category.id));
   }
 
   render () {
@@ -59,12 +63,17 @@ export default class CategoryOptions extends Component {
 
 CategoryOptions.propTypes = {
   categories: PropTypes.array.isRequired,
-
-  defaultCategoryId: PropTypes.string,
-  onSelectedCategoryChanged: PropTypes.func,
+  defaultCategoryId: PropTypes.string
 };
 
 CategoryOptions.defaultProps = {
-  defaultCategoryId: '',
-  onSelectedCategoryChanged: null,
+  defaultCategoryId: ''
 };
+
+const mapStateToProps = state => ({
+  categories: state.categories.items,
+  loading: state.categories.loading,
+  error: state.categories.error
+});
+
+export default connect(mapStateToProps)(CategoryOptions);
