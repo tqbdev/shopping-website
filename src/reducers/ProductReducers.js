@@ -3,9 +3,9 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE,
   FILTER_PRODUCTS
-} from '../../actions/Product/ProductActions';
+} from '../actions/ProductActions';
 
-import Filter from '../../../services/Filter';
+import Filter from '../services/Filter';
 
 const initialState = {
   items: [],
