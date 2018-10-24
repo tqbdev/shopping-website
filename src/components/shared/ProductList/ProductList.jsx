@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard/ProductCard';
 import './ProductList.css';
 
-import { fetchProducts } from '../../../store/actions/Product/ProductApi';
+import { fetchProducts } from '../../../actions/ProductActions';
 
 class ProductList extends Component {
   componentDidMount() {

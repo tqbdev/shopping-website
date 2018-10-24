@@ -5,25 +5,28 @@ import PropTypes from 'prop-types';
 
 import './CategoryOptions.css';
 
-import { filterProducts } from '../../../../store/actions/Product/ProductApi';
-import { fetchCategories } from '../../../../store/actions/Category/CategoryApi';
+import { filterProducts } from '../../../../actions/ProductActions';
+import { fetchCategories } from '../../../../actions/CategoryActions';
 
 class CategoryOptions extends Component {
   constructor (props) {
     super(props);
-
-    const { categories } = this.props;
-
-    this.state = {
-      selectedCategoryId: categories.length > 0
-        ? categories[0].id : ''
-    }
 
     this.onItemClick = this.onItemClick.bind(this);
   }
 
   componentDidMount() {
     this.props.dispatch(fetchCategories());
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state && state.selectedCategoryId) return state;
+
+    const { categories } = props;
+    return {
+      selectedCategoryId: categories.length > 0
+        ? categories[0].id : ''
+    };
   }
 
   onItemClick (category) {
