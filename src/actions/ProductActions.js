@@ -5,8 +5,6 @@ export const FETCH_PRODUCTS_BEGIN   = 'FETCH_PRODUCTS_BEGIN';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 
-export const FILTER_PRODUCTS= 'FILTER_PRODUCTS';
-
 // FETCH
 export const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN
@@ -22,12 +20,6 @@ export const fetchProductsFailure = error => ({
   payload: { error }
 });
 
-// FILTER
-export const filterProducts = categoryId => ({
-  type: FILTER_PRODUCTS,
-  payload: { categoryId }
-});
-
 export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsBegin());
@@ -40,13 +32,6 @@ export function fetchProducts() {
       })
       .catch(error => dispatch(fetchProductsFailure(error)));
   };
-}
-
-export function filterProductsRequest(categoryId) {
-  if (!categoryId) return;
-  return dispatch => {
-    dispatch(filterProducts(categoryId));
-  }
 }
 
 function handleErrors(response) {

@@ -1,8 +1,7 @@
 import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE,
-  FILTER_PRODUCTS
+  FETCH_PRODUCTS_FAILURE
 } from '../actions/ProductActions';
 
 import Filter from '../services/Filter';
@@ -22,7 +21,6 @@ const ProductReducers = (state = initialState, action) => {
         loading: true,
         error: null
       };
-      break;
     
     case FETCH_PRODUCTS_FAILURE:
       return {
@@ -32,7 +30,6 @@ const ProductReducers = (state = initialState, action) => {
         items: [],
         filteredItems: []
       };
-      break;
 
     case FETCH_PRODUCTS_SUCCESS:
       return {
@@ -42,16 +39,6 @@ const ProductReducers = (state = initialState, action) => {
         items: action.payload.products,
         filteredItems: action.payload.products
       };
-      break;
-
-    case FILTER_PRODUCTS: {
-      const items = state.items;
-      return {
-        ...state,
-        filteredItems: Filter.filterProductByCategory(items, action.payload.categoryId)
-      }
-    }
-      break;
 
     default:
       return state;
