@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
 import ProductCard from './ProductCard/ProductCard';
 import './ProductList.css';
 
-import { fetchProducts } from '../../../actions/ProductActions';
-
-class ProductList extends Component {
-  componentDidMount() {
-    this.props.dispatch(fetchProducts());
-  }
-
+export default class ProductList extends Component {
   render() {
     return (
       <div className="row">
@@ -30,11 +23,3 @@ ProductCard.propTypes = {
 ProductCard.defaultProps = {
   products: [],
 };
-
-const mapStateToProps = state => ({
-  products: state.products.filteredItems,
-  loading: state.products.loading,
-  error: state.products.error
-});
-
-export default connect(mapStateToProps)(ProductList);

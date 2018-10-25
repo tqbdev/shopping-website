@@ -18,7 +18,6 @@ const CategoryReducers = (state = initialState, action) => {
         loading: true,
         error: null
       };
-      break;
     
     case FETCH_CATEGORIES_FAILURE:
       return {
@@ -27,7 +26,6 @@ const CategoryReducers = (state = initialState, action) => {
         error: action.payload.error,
         items: []
       };
-      break;
 
     case FETCH_CATEGORIES_SUCCESS:
       return {
@@ -36,7 +34,6 @@ const CategoryReducers = (state = initialState, action) => {
         error: null,
         items: action.payload.categories
       };
-      break;
 
     default:
       return state;
