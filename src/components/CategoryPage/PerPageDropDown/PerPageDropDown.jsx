@@ -4,18 +4,32 @@ import PropTypes from 'prop-types';
 export default class PerPageDropDown extends Component {
   constructor (props) {
     super(props);
+
+    this.onClickHandle = this.onClickHandle.bind(this);
   }
-  
+
+  onClickHandle(value) {
+    if (!value) return;
+
+    const { onPerPageValueChange } = this.props;
+    if (onPerPageValueChange) {
+      onPerPageValueChange(value);
+    }
+  }
+
   render () {
     return (
       <li>
         <span>Show</span>
-        <span>6</span>
+        <span>{this.props.selectedValue}</span>
         <i className="fa fa-angle-down"></i>
         <ul>
-          <li><span>6</span></li>
-          <li><span>12</span></li>
-          <li><span>24</span></li>
+          {this.props.values.map(value => (
+            <li
+              key={value}
+              onClick={() => this.onClickHandle(value)}
+            ><span>{value}</span></li>
+          ))}
         </ul>
       </li>
     );

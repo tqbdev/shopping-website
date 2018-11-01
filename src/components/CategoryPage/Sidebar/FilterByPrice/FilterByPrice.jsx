@@ -11,8 +11,8 @@ export default class FilterByPrice extends Component {
 
     this.state = {
       value: {
-        min: 2,
-        max: 20
+        min: this.props.defaultValue.min,
+        max: this.props.defaultValue.max
       }
     }
   }
@@ -23,14 +23,11 @@ export default class FilterByPrice extends Component {
         <div className="sidebar_title">
           <h5>Filter by Price</h5>
         </div>
-        <p>
         <InputRange
-          maxValue={20}
-          minValue={0}
+          maxValue={this.props.bounce.max}
+          minValue={this.props.bounce.min}
           value={this.state.value}
-          onChange={value => this.setState({ value })} />
-          {/* <input type="text" id="amount" readOnly /> */}
-        </p>
+          onChange={value => this.setState({value})}/>
         <div id="slider-range"></div>
         <div className="filter_button"><span>filter</span></div>
       </div>

@@ -1,14 +1,16 @@
 import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE,
+  FETCH_A_PRODUCT_BEGIN,
+  FETCH_A_PRODUCT_SUCCESS,
+  FETCH_A_PRODUCT_FAILURE
 } from '../actions/ProductActions';
-
-import Filter from '../services/Filter';
 
 const initialState = {
   items: [],
-  filteredItems: [],
+  pagination: null,
+  item: null,
   loading: false,
   error: null
 };
@@ -28,7 +30,7 @@ const ProductReducers = (state = initialState, action) => {
         loading: false,
         error: action.payload.error,
         items: [],
-        filteredItems: []
+        pagination: null
       };
 
     case FETCH_PRODUCTS_SUCCESS:
@@ -36,8 +38,31 @@ const ProductReducers = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        items: action.payload.products,
-        filteredItems: action.payload.products
+        items: action.payload.products.body,
+        pagination: action.payload.products.pagination
+      };
+
+    case FETCH_A_PRODUCT_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    
+    case FETCH_A_PRODUCT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        item: null
+      };
+
+    case FETCH_A_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        item: action.payload.product
       };
 
     default:

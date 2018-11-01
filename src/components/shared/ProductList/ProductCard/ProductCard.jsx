@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom'
 
 import './ProductCard.css';
 
-export default class ProductCard extends Component {
+class ProductCard extends Component {
   constructor (props) {
     super(props);
 
@@ -13,11 +14,16 @@ export default class ProductCard extends Component {
     }
 
     this.onFavoriteClick = this.onFavoriteClick.bind(this);
+    this.onClickProduct = this.onClickProduct.bind(this);
   }
 
   onFavoriteClick () {
     const prevState = this.state.isFavorite;
     this.setState({isFavorite: !prevState});
+  }
+
+  onClickProduct (id) {
+    this.props.history.push(`/product/${id}`);
   }
 
   render () {
@@ -26,7 +32,7 @@ export default class ProductCard extends Component {
     const originalPrice = isSale && <span>${product.originalPrice}</span>;
 
     return (
-      <div className="product-item">
+      <div className="product-item" onClick={() => this.onClickProduct(product.id)}>
         <div className="product">
           <div className="product_image">
             <img src={product.image} alt={product.image} />
@@ -44,7 +50,7 @@ export default class ProductCard extends Component {
 
           <div className="product_info">
             <h6 className="product_name">
-              <a href="#">{product.name}</a>
+              <span>{product.name}</span>
             </h6>
             <div className="product_price">
               ${product.salePrice}
@@ -66,3 +72,5 @@ ProductCard.propTypes = {
 };
 
 ProductCard.defaultProps = {};
+
+export default withRouter(ProductCard);

@@ -1,33 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 
 import { ShippingInformation, Breadcrumb } from '../shared';
-import Thumbnails from './Thumbnails/Thumbnails';
 import ProductDetails from './Details/ProductDetails';
 import Tabs from './Tabs/Tabs';
 
+import { fetchAProduct } from '../../actions/ProductActions';
+
 import './ProductPage.css';
 
-const images = [
-  {
-    id: 1,
-    thumb: 'single_1_thumb.jpg',
-    pic: 'single_1.jpg',
-  },
-  {
-    id: 2,
-    thumb: 'single_2_thumb.jpg',
-    pic: 'single_2.jpg',
-  },
-  {
-    id: 3,
-    thumb: 'single_3_thumb.jpg',
-    pic: 'single_3.jpg',
-  }
-]
-
-export default class ProductPage extends Component {
+class ProductPage extends Component {
   constructor (props) {
     super(props);
+  }
+
+  componentDidMount () {
+    const id = this.props.match.params.id;
+    this.props.dispatch(fetchAProduct(id));
   }
 
   render () {
@@ -40,10 +29,10 @@ export default class ProductPage extends Component {
             </div>
           </div>
 
-          <div className="row">
-            <Thumbnails images={images}></Thumbnails>
-            <ProductDetails></ProductDetails>
-          </div>
+          { !this.props.loading &&
+            !this.props.error &&
+            this.props.product && 
+          <ProductDetails product={this.props.product}></ProductDetails>}
         </div>
         <Tabs></Tabs>
         <ShippingInformation></ShippingInformation>
@@ -51,3 +40,11 @@ export default class ProductPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  product: state.products.item,
+  loading: state.products.loading,
+  error: state.products.error
+});
+
+export default connect(mapStateToProps)(ProductPage);

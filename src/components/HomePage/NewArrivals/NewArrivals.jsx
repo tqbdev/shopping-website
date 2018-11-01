@@ -16,7 +16,8 @@ class NewArrivals extends Component {
     super(props);
 
     this.state = {
-      filteredProducts: []
+      filteredProducts: [],
+      selectedCategoryId: ''
     }
 
     this.onProductsChange = memoize(
@@ -26,6 +27,25 @@ class NewArrivals extends Component {
         this.setState({
           filteredProducts: products
         });
+      }
+    )
+
+    this.onCategoriesChange = memoize(
+      (categories) => {
+        if (this.state && this.state.selectedCategoryId) {
+          if (_.find(categories, (category) => {
+            if (category.id === this.state.selectedCategoryId) {
+              return true;
+            }
+          })) {
+            return;
+          }
+        }
+
+        this.setState((prevState) => ({
+          filteredProducts: prevState.filteredProducts,
+          selectedCategoryId: categories.length > 0 ? categories[0].id : ''
+        }));
       }
     )
 
@@ -42,11 +62,15 @@ class NewArrivals extends Component {
 
     const filteredProducts = category.id === 'all' 
       ? this.props.products : _.filter(this.props.products, { categoryId: category.id });
-    this.setState({ filteredProducts });
+    this.setState({
+      filteredProducts,
+      selectedCategoryId: category.id
+    });
   }
 
   render() {
     this.onProductsChange(this.props.products);
+    this.onCategoriesChange(this.props.categories);
 
     return (
       <div className="new_arrivals">
@@ -60,6 +84,7 @@ class NewArrivals extends Component {
           </div>
           {!this.props.loadingCategories && <CategoryOptions
             categories={this.props.categories}
+            selectedCategoryId={this.state.selectedCategoryId}
             onSelectedCategoryChanged={this.onSelectedCategoryChanged}>
           </CategoryOptions>}
 
