@@ -7,25 +7,23 @@ export default class ThumbnailSelector extends Component {
   constructor (props) {
     super(props);
 
-    const { images, defaultImageId } = this.props;
+    const { images } = this.props;
 
     this.state = {
-      selectedImageId: images.length > 0
-      ? ((defaultImageId && images.findIndex(v => v.id === defaultImageId) >= 0 && defaultImageId) || images[0].id)
-      : ''
+      selectedImageUrl: images.length > 0 ? images[0] : ''
     }
 
     this.onItemClick = this.onItemClick.bind(this);
   }
 
-  onItemClick (imageId) {
+  onItemClick (imageUrl) {
     this.setState({
-      selectedImageId: imageId
+      selectedImageUrl: imageUrl
     });
 
     const { onSelectedImageChange } = this.props;
     if (onSelectedImageChange) {
-      onSelectedImageChange(imageId);
+      onSelectedImageChange(imageUrl);
     }
   }
 
@@ -34,15 +32,15 @@ export default class ThumbnailSelector extends Component {
       <div className="col-lg-3 order-lg-1 order-2">
         <div className="single_product_thumbnails">
           <ul>
-            { this.props.images.map(image => (
+            { this.props.images.map(imageUrl => (
               <li
-                key={image.id}
+                key={imageUrl}
                 className={cx({
-                  'active': image.id === this.state.selectedImageId
+                  'active': imageUrl === this.state.selectedImageUrl
                 })}
-                onClick={() => this.onItemClick(image.id)}
+                onClick={() => this.onItemClick(imageUrl)}
                 >
-                <img src={`/assets/images/${image.thumb}`} alt={image.thumb} data-image={`/assets/images/${image.thumb}`} />
+                <img src={imageUrl} alt={imageUrl}/>
               </li>
             ))}
           </ul>

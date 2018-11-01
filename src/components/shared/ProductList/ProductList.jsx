@@ -5,11 +5,18 @@ import ProductCard from './ProductCard/ProductCard';
 import './ProductList.css';
 
 export default class ProductList extends Component {
+  constructor (props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="row">
         <div className="col products-list">
-          {this.props.products.map(product => <ProductCard key={product.id} product={product} />)}
+          {this.props.products.map(product => 
+          <ProductCard
+            key={product.id}
+            product={product}/>)}
         </div>
       </div>
     )

@@ -8,22 +8,10 @@ export default class CategoryOptions extends Component {
   constructor (props) {
     super(props);
 
-    const { categories, defaultCategoryId } = this.props;
-
-    this.state = {
-      selectedCategoryId: categories.length > 0
-        ? ((defaultCategoryId && categories.findIndex(v => v.id === defaultCategoryId) >= 0 && defaultCategoryId) || categories[0].id)
-        : ''
-    }
-
     this.onItemClick = this.onItemClick.bind(this);
   }
 
   onItemClick (category) {
-    this.setState({
-      selectedCategoryId: category.id
-    });
-
     const { onSelectedCategoryChanged } = this.props;
     if (onSelectedCategoryChanged) {
       onSelectedCategoryChanged(category);
@@ -42,7 +30,7 @@ export default class CategoryOptions extends Component {
                 <li
                   key={category.id}
                   className={cx(itemStaticClasses, {
-                    'active is-checked': category.id === this.state.selectedCategoryId
+                    'active is-checked': category.id === this.props.selectedCategoryId
                   })}
                   onClick={() => this.onItemClick(category)}
                 >
@@ -59,9 +47,5 @@ export default class CategoryOptions extends Component {
 
 CategoryOptions.propTypes = {
   categories: PropTypes.array.isRequired,
-  defaultCategoryId: PropTypes.string
-};
-
-CategoryOptions.defaultProps = {
-  defaultCategoryId: ''
+  selectedCategoryId: PropTypes.string.isRequired
 };
