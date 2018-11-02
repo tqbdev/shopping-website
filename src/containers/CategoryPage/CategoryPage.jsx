@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 
-import SideBar from './Sidebar/Sidebar';
-import { ShippingInformation, ProductList, Breadcrumb } from '../shared';
-import SortingDropDown from './SortingDropDown/SortingDropDown';
-import PerPageDropDown from './PerPageDropDown/PerPageDropDown';
-import PageNavigationBar from './PageNavigationBar/PageNavigationBar';
+import SideBar from '../../components/CategoryPage/Sidebar/Sidebar';
+import { ShippingInformation, ProductList, Breadcrumb } from '../../components/shared';
+import SortingDropDown from '../../components/CategoryPage/SortingDropDown/SortingDropDown';
+import PerPageDropDown from '../../components/CategoryPage/PerPageDropDown/PerPageDropDown';
+import PageNavigationBar from '../../components/CategoryPage/PageNavigationBar/PageNavigationBar';
 
 import { fetchCategories } from '../../actions/CategoryActions';
 import config from '../../config';
@@ -76,6 +76,7 @@ class CategoryPage extends Component {
     this.onSelectedCategoryChanged = this.onSelectedCategoryChanged.bind(this);
     this.onPageChanged = this.onPageChanged.bind(this);
     this.onSortOptionChanged = this.onSortOptionChanged.bind(this);
+    this.onFilterPriceChanged = this.onFilterPriceChanged.bind(this);
   }
 
   componentDidMount() {
@@ -174,6 +175,13 @@ class CategoryPage extends Component {
     this.updateProductList();
   }
 
+  onFilterPriceChanged (value) {
+    if (!value) return;
+
+    this.filterAndSort.filterPrice = value;
+    this.updateProductList();
+  }
+
   render () {
     const {loading, products, pagination} = this.state;
 
@@ -187,7 +195,8 @@ class CategoryPage extends Component {
                 onSelectedCategoryChanged={this.onSelectedCategoryChanged}
                 categories={this.props.categories}
                 bounce={bouncePrice}
-                filterPrice={this.filterAndSort.filterPrice}/>
+                filterPrice={this.filterAndSort.filterPrice}
+                onFilterPriceChanged={this.onFilterPriceChanged}/>
 
               <div className="main_content">
                 <div className="products_iso">

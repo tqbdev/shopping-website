@@ -1,6 +1,6 @@
-import HomePage from './components/HomePage/HomePage';
-import CategoryPage from './components/CategoryPage/CategoryPage';
-import ProductPage from './components/ProductPage/ProductPage';
+import HomePage from './containers/HomePage/HomePage';
+import CategoryPage from './containers/CategoryPage/CategoryPage';
+import ProductPage from './containers/ProductPage/ProductPage';
 
 export default [
   {

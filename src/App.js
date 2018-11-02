@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Header, Footer } from './components/shared';
 
@@ -31,7 +31,7 @@ class App extends Component {
       <Router>
         <div>
           <Header></Header>
-          {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+            {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
           <Footer></Footer>
         </div>
       </Router>

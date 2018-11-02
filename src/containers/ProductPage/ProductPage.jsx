@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
-import { ShippingInformation, Breadcrumb } from '../shared';
-import ProductDetails from './Details/ProductDetails';
-import Tabs from './Tabs/Tabs';
+import { ShippingInformation, Breadcrumb } from '../../components/shared';
+import ProductDetails from '../../components/ProductPage/Details/ProductDetails';
+import Tabs from '../../components/ProductPage/Tabs/Tabs';
 
 import { fetchAProduct } from '../../actions/ProductActions';
 

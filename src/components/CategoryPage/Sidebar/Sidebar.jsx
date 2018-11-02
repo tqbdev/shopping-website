@@ -10,7 +10,7 @@ export default class SideBar extends Component {
     return (
       <div className="sidebar">
         <CategoryList categories={this.props.categories} onSelectedCategoryChanged={this.props.onSelectedCategoryChanged}/>
-        <FilterByPrice bounce={this.props.bounce} defaultValue={this.props.filterPrice}/>
+        <FilterByPrice bounce={this.props.bounce} defaultValue={this.props.filterPrice} onFilterPriceChanged={this.props.onFilterPriceChanged}/>
       </div>
     );
   }
