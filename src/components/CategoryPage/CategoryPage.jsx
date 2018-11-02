@@ -70,8 +70,9 @@ class CategoryPage extends Component {
     this.onStateChange = memoize(
       (state) => {
         this.generateQueryString();
+        this.loadProduct();
       }
-    )
+    );
   }
 
   componentDidMount() {
@@ -85,8 +86,8 @@ class CategoryPage extends Component {
       skip: this.state.limit * (this.state.currentPage - 1),
       where: {
         salePrice: {
-            gt: +this.state.filterPrice.max,
-            lt: +this.state.filterPrice.min
+            gt: +this.state.filterPrice.min,
+            lt: +this.state.filterPrice.max
         }
       }
     }
