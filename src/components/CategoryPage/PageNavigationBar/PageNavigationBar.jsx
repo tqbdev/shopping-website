@@ -39,7 +39,7 @@ export default class PageNavigationBar extends Component {
           </ul>
         </div>
         <div className="page_total"><span>of</span> {this.props.total}</div>
-        {this.props.current !== this.props.total && <div id="next_page" className="page_next"><a href="#" onClick={() => this.onClickPage(this.props.current + 1)}><i className="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>}
+        {+this.props.current !== +this.props.total && <div id="next_page" className="page_next"><a href="#" onClick={() => this.onClickPage(+this.props.current + 1)}><i className="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>}
       </div>
     );
   }
