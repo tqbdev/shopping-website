@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import './MainNavigation.css';
 
@@ -24,10 +25,10 @@ class MainNavigation extends Component {
                 </ul>
                 <ul className="navbar_user">
                   <li className="checkout">
-                    <a href="#">
+                    <Link to="/cart">
                       <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <span id="checkout_items" className="checkout_items">{this.props.cartTotal}</span>
-                    </a>
+                      <span className="checkout_items">{this.props.cartTotal}</span>
+                    </Link>
                   </li>
                 </ul>
                 <div className="hamburger_container">
@@ -46,4 +47,4 @@ const mapStateToProps = state => ({
   cartTotal: state.cart.total
 });
 
-export default connect(mapStateToProps)(MainNavigation);
+export default withRouter(connect(mapStateToProps)(MainNavigation));

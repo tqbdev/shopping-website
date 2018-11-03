@@ -17,7 +17,9 @@ const CartReducers = (state = initialState, action) => {
       const items = state.items;
       let total = state.total;
       const { product, amount } = action.payload;
-      const idx =  _.findIndex(items, { 'id': product.id });
+      const idx =  _.findIndex(items, (item) => {
+        return item.product.id === product.id;
+      });
 
       if (idx === -1) {
         items.push({
@@ -26,6 +28,9 @@ const CartReducers = (state = initialState, action) => {
         });
       } else {
         items[idx].amount += +amount;
+        if (items[idx].amount <= 0) {
+          items.splice(idx, 1);
+        }
       }
 
       return {
@@ -40,7 +45,9 @@ const CartReducers = (state = initialState, action) => {
       let total = state.total;
       let totalPrice = state.totalPrice;
       const { productId } = action.payload;
-      const idx =  _.findIndex(items, { 'id': productId });
+      const idx =  _.findIndex(items, (item) => {
+        return item.product.id === productId;
+      });
       
       if (idx !== -1) {
         total -= items[idx].amount;
