@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom'
 
 import './ProductCard.css';
 
-class ProductCard extends Component {
+export default class ProductCard extends Component {
   constructor (props) {
     super(props);
 
@@ -15,6 +14,7 @@ class ProductCard extends Component {
 
     this.onFavoriteClick = this.onFavoriteClick.bind(this);
     this.onClickProduct = this.onClickProduct.bind(this);
+    this.onAddProductClick = this.onAddProductClick.bind(this);
   }
 
   onFavoriteClick () {
@@ -23,7 +23,21 @@ class ProductCard extends Component {
   }
 
   onClickProduct (id) {
-    this.props.history.push(`/product/${id}`);
+    if (!id) return;
+
+    const { onClickProduct } = this.props;
+    if (onClickProduct) {
+      onClickProduct(id);
+    }
+  }
+
+  onAddProductClick (product) {
+    if (!product) return;
+
+    const { onAddProduct } = this.props;
+    if (onAddProduct) {
+      onAddProduct(product);
+    }
   }
 
   render () {
@@ -32,8 +46,8 @@ class ProductCard extends Component {
     const originalPrice = isSale && <span>${product.originalPrice}</span>;
 
     return (
-      <div className="product-item" onClick={() => this.onClickProduct(product.id)}>
-        <div className="product">
+      <div className="product-item">
+        <div className="product" onClick={() => this.onClickProduct(product.id)}>
           <div className="product_image">
             <img src={product.image} alt={product.image} />
           </div>
@@ -59,8 +73,8 @@ class ProductCard extends Component {
           </div>
         </div>
 
-        <div className="red_button add_to_cart_button">
-          <a href="#">add to cart</a>
+        <div onClick={() => this.onAddProductClick(product)} className="red_button add_to_cart_button">
+          <span>add to cart</span>
         </div>
       </div>
     );
@@ -72,5 +86,3 @@ ProductCard.propTypes = {
 };
 
 ProductCard.defaultProps = {};
-
-export default withRouter(ProductCard);

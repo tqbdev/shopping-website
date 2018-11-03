@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './MainNavigation.css';
 
-export default class MainNavigation extends Component {
+class MainNavigation extends Component {
   render () {
     return (
       <div className="main_nav_container">
@@ -25,7 +26,7 @@ export default class MainNavigation extends Component {
                   <li className="checkout">
                     <a href="#">
                       <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <span id="checkout_items" className="checkout_items">2</span>
+                      <span id="checkout_items" className="checkout_items">{this.props.cartTotal}</span>
                     </a>
                   </li>
                 </ul>
@@ -40,3 +41,9 @@ export default class MainNavigation extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  cartTotal: state.cart.total
+});
+
+export default connect(mapStateToProps)(MainNavigation);

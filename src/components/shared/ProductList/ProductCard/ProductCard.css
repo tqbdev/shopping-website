@@ -200,3 +200,7 @@
 .favorite:hover::after {
   color: #fe4c50;
 }
+
+.red_button span {
+  color: white;
+}
