@@ -5,10 +5,6 @@ import UserReview from './UserReview/UserReview';
 import './UserReviewList.css';
 
 export default class UserReviewList extends Component {
-  constructor (props) {
-    super(props);
-  }
-
   render () {
     return (
       <div className="col-lg-6 reviews_col">

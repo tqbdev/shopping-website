@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import './Descriptions.css';
 
 export default class Descriptions extends Component {
-  constructor (props) {
-    super(props);
-  }
-
   render () {
     return (
       <div className="tab_container active">

@@ -6,17 +6,26 @@ import ProductDetails from '../../components/ProductPage/Details/ProductDetails'
 import Tabs from '../../components/ProductPage/Tabs/Tabs';
 
 import { fetchAProduct } from '../../actions/ProductActions';
+import { addToCart } from '../../actions/CartActions';
 
 import './ProductPage.css';
 
 class ProductPage extends Component {
   constructor (props) {
     super(props);
+
+    this.onAddProduct = this.onAddProduct.bind(this);
   }
 
   componentDidMount () {
     const id = this.props.match.params.id;
     this.props.dispatch(fetchAProduct(id));
+  }
+
+  onAddProduct (product, amount) {
+    if (!product || !amount) return;
+
+    this.props.dispatch(addToCart(product, amount));
   }
 
   render () {
@@ -32,7 +41,10 @@ class ProductPage extends Component {
           { !this.props.loading &&
             !this.props.error &&
             this.props.product && 
-          <ProductDetails product={this.props.product}></ProductDetails>}
+          <ProductDetails
+          product={this.props.product}
+          onAddProduct={this.onAddProduct}
+          ></ProductDetails>}
         </div>
         <Tabs></Tabs>
         <ShippingInformation></ShippingInformation>

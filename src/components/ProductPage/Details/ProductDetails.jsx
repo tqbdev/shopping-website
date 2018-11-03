@@ -15,6 +15,7 @@ export default class ProductDetails extends Component {
 
 		this.changeFavorite = this.changeFavorite.bind(this);
 		this.changeQuanlity = this.changeQuanlity.bind(this);
+		this.onClickAddProduct = this.onClickAddProduct.bind(this);
 	}
 	
 	changeQuanlity(number) {
@@ -35,6 +36,15 @@ export default class ProductDetails extends Component {
 			isFavorite: !this.state.isFavorite,
 			quantity: this.state.quantity
 		});
+	}
+
+	onClickAddProduct (product) {
+		if (!product) return;
+
+		const { onAddProduct } = this.props;
+		if (onAddProduct) {
+			onAddProduct(product, this.state.quantity);
+		}
 	}
 
   render () {
@@ -77,7 +87,7 @@ export default class ProductDetails extends Component {
 								<span id="quantity_value">{this.state.quantity}</span>
 								<span className="plus" onClick={() => this.changeQuanlity(1)}><i className="fa fa-plus" aria-hidden="true"></i></span>
 							</div>
-							<div className="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+							<div className="red_button add_to_cart_button"><span style={{cursor: 'pointer'}} onClick={() => this.onClickAddProduct(product)}>add to cart</span></div>
 							<div className={cx(staticClass, {
 								'active': this.state.isFavorite
 							})}
