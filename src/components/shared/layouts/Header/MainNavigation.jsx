@@ -22,6 +22,16 @@ class MainNavigation extends Component {
                   {/* <li><a href="#">promotion</a></li>
                   <li><a href="https://nordiccoder.com/blog" target="blank">blog</a></li>
                   <li><a href="#">contact</a></li> */}
+                  <li>
+                    <a href="#">
+                      My Account
+                      <i className="fa fa-angle-down"></i>
+                    </a>
+                    <ul className="account_selection">
+                      <li><a href="#"><i className="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                      <li><a href="#"><i className="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                    </ul>
+                  </li>
                 </ul>
                 <ul className="navbar_user">
                   <li className="checkout">

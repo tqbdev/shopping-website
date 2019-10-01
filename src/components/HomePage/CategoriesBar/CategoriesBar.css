@@ -37,7 +37,7 @@ Banner
 .banner_category
 {
 	height: 50px;
-	background: #FFFFFF;
+	background: rgba(255, 255, 255, 0.38);
 	min-width: 180px;
 	padding-left: 25px;
 	padding-right: 25px;
