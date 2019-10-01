@@ -73,9 +73,7 @@ export default class ProductCard extends Component {
           </div>
         </div>
 
-        <div onClick={() => this.onAddProductClick(product)} className="red_button add_to_cart_button">
-          <span>add to cart</span>
-        </div>
+       
       </div>
     );
   }

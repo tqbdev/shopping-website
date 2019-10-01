@@ -1,9 +1,43 @@
-import React, {Component} from 'react';
-
+import React, {PropTypes,Component} from 'react';
+import Countdown from 'react-countdown-now'
 import './Deals.css';
+import { userInfo } from 'os';
 
 export default class Deals extends Component {
+  
+  constructor(props)
+  {
+    super(props);
+    this.state={
+      days: 3,
+      hours: 10,
+      minutes: 45,
+      seconds: 0,
+    }
+  }
+ 
+componentDidMount(){
+  
+  this.interval = setInterval(() => this.decrementTime());
+}
+ 
+decrementTime(){
+
+   const time = Date.parse(new Date());
+   const seconds = Math.floor((time/1000) % 60);
+   const minutes = Math.floor((time/1000/60) % 60);
+   const hours = Math.floor(time/(1000*60*60) % 24);
+   const days = Math.floor(time/(1000*60*60*24) % 24);
+
+    this.setState({
+      days: days,
+      minutes: minutes,
+      hours: hours,
+      seconds: seconds,
+    })
+}
   render () {
+    
     return (
       <div className="deal_ofthe_week">
         <div className="container">
@@ -20,19 +54,19 @@ export default class Deals extends Component {
                 </div>
                 <ul className="timer">
                   <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="day" className="timer_num">03</div>
-                    <div className="timer_unit">Day</div>
+                    <div id="day" className="timer_num">{this.state.days}</div>
+                    <div className="timer_unit">Days</div>
                   </li>
                   <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="hour" className="timer_num">15</div>
+                    <div id="hour" className="timer_num">{this.state.hours}</div>
                     <div className="timer_unit">Hours</div>
                   </li>
                   <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="minute" className="timer_num">45</div>
+                    <div id="minute" className="timer_num">{this.state.minutes}</div>
                     <div className="timer_unit">Mins</div>
                   </li>
                   <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="second" className="timer_num">23</div>
+                    <div id="second" className="timer_num">{this.state.seconds}</div>
                     <div className="timer_unit">Sec</div>
                   </li>
                 </ul>
@@ -45,3 +79,5 @@ export default class Deals extends Component {
     );
   }
 }
+
+
