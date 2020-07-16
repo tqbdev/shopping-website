@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "memoize-one": "^4.0.2",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
